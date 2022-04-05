@@ -1,5 +1,8 @@
 FROM golang:alpine
 
+# 安装 curl, 默认安装在 /usr/bin目录, 用 find / -name curl 找出对应的位置
+RUN apk add --update curl && rm -rf /var/cache/apk/*
+
 # 为我们的镜像设置必要的环境变量
 ENV GO111MODULE=on \
     CGO_ENABLED=0 \
