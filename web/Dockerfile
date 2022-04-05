@@ -7,14 +7,17 @@ ENV GO111MODULE=on \
     GOARCH=amd64 \
 	GOPROXY="https://goproxy.cn,direct"
 
-# 移动到工作目录：$GOPATH/src/talk/web 这个目录 是你项目代码 放在linux上  
-WORKDIR /work/code/goworksapce/src/talk/web
+# 移动到工作目录：$GOPATH/src/talk 这个目录 是你项目代码 放在linux上  
+WORKDIR /work/code/goworksapce/src/talk
 
 # 将代码复制到容器中
-COPY . . 
+COPY . .
+
+RUN go mod init github.com/oopattern/talk
+RUN go mod tidy
 
 # 将我们的代码编译成二进制可执行文件  可执行文件名为 webtest
-RUN go build -o webtest ./...
+RUN go build -o webtest .
 
 # 为镜像打标签?
 LABEL Name=webtest Version=0.0.1

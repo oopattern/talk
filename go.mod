@@ -1,4 +1,4 @@
-module talk
+module github.com/oopattern/talk
 
 go 1.17
 
